@@ -4,11 +4,15 @@
 #include "utils/tempo.hpp"
 
 #include <iostream>
+#include <functional>
 
 using namespace std;
 
-void executarAlgoritmo(void (*algoritmo)(int*, int), const string& nomeAlgoritmo,
-                              const string& caminhoBase, const string& caminhoCSV) {
+// void executarAlgoritmo(void (*algoritmo)(int*, int), const string& nomeAlgoritmo, const string& caminhoBase, const string& caminhoCSV)
+
+// para lambda: function<void(int*, int)> // variavel capaz de armazenar uma funcao ou lambda *#include <functional>*
+void executarAlgoritmo(function<void(int*, int)> algoritmo,
+                    const string& nomeAlgoritmo, const string& caminhoBase, const string& caminhoCSV) {
 
     int tipo = escolherTipoInstancia();
     int tamanho = escolherTamanhoInstancia();

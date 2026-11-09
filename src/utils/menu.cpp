@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "algoritmos/quick_sort.hpp"
 #include "utils/executar.hpp"
 #include "utils/caminhos.hpp"
 #include "utils/algoritmos.hpp"
@@ -79,6 +80,7 @@ void executarMenu()
         cout << "3. Executar Selection Sort\n";
         cout << "4. Executar Shell Sort\n";
         cout << "5. Executar Merge Sort\n";
+        cout << "6. Executar Quick Sort\n";
         cout << "0. Sair\n";
         cout << "Escolha uma opcao: ";
 
@@ -139,6 +141,31 @@ void executarMenu()
                 executarAlgoritmo([](int* vetor, int tamanho) { mergeSort(vetor, tamanho); }, "Merge Sort",
                                                                                 CAMINHO_MERGE,CSV_MERGE);
                 break;
+
+            case 6: {
+                int versao;
+
+                cout << "1 - Pivo: Primeiro elemento\n";
+                cout << "2 - Pivo: Media aritmetica\n";
+                cout << "Escolha a versao: ";
+                cin >> versao;
+
+                if (versao == 1 || versao == 2) {
+                    executarAlgoritmo(
+                        [versao](int* vetor, int tamanho) {
+                            quickSort(vetor, tamanho, versao);
+                        },
+                        "Quick Sort v" + to_string(versao),
+                        versao == 1 ? CAMINHO_QUICK_V1 : CAMINHO_QUICK_V2,
+                        versao == 1 ? CSV_QUICK_V1 : CSV_QUICK_V2
+                    );
+
+                } else {
+                    cout << "Opcao invalida!\n";
+                }
+
+                break;
+            }
 
             case 0:
                 cout << "\nEncerrando programa...\n";

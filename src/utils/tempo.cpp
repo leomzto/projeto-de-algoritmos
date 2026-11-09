@@ -3,8 +3,10 @@
 
 using namespace std;
 
+// double calcularTempo(void (*algoritmo)(int*, int), int* vetor, int tamanho)
+
 // function<void(int*, int)> algoritmo : função que recebe um vetor e seu tamanho
-double calcularTempo(void (*algoritmo)(int*, int), int* vetor, int tamanho) {
+double calcularTempo(function<void(int*, int)> algoritmo, int* vetor, int tamanho) {
     // salvar tempo do inicio
     auto inicio = chrono::steady_clock::now();
 
