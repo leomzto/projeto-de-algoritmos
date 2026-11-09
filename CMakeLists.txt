@@ -16,6 +16,8 @@ add_executable(Projeto_de_Algoritimo
         src/algoritmos/bubble_sort.cpp
         src/algoritmos/selection_sort.cpp
         src/algoritmos/shell_sort.cpp
+        src/algoritmos/merge_sort.cpp
+        src/algoritmos/quick_sort.cpp
 
         # utils
         src/utils/arquivos.cpp
@@ -23,10 +25,9 @@ add_executable(Projeto_de_Algoritimo
         src/utils/menu.cpp
         src/utils/tempo.cpp
         src/utils/executar.cpp
-        src/algoritmos/merge_sort.cpp
 )
 
-# .hpp's
+# *.hpp
 target_include_directories(Projeto_de_Algoritimo PRIVATE
         include
 )
