@@ -2,7 +2,7 @@
 
 Implementações e análises experimentais de algoritmos de ordenação em **C++**, desenvolvidas para a disciplina de Projeto de Algoritmos.
 
-O projeto gera instâncias de entrada, executa os algoritmos, mede o tempo de execução e armazena os arquivos de entrada e saída para análise.
+O programa gera instâncias de entrada, executa os algoritmos, mede o tempo de execução e armazena os arquivos de entrada, saída e tempo de cada execução. Os resultados alimentam as tabelas, os gráficos e os relatórios.
 
 ## Algoritmos implementados
 
@@ -26,21 +26,48 @@ O projeto gera instâncias de entrada, executa os algoritmos, mede o tempo de ex
 
 ```
 Projeto_de_Algoritmos/
-├── main.cpp            # ponto de entrada do programa
-├── CMakeLists.txt      # configuração de build
-├── include/            # cabeçalhos (.hpp)
-├── src/                # implementações (.cpp)
-├── Algoritmos/         # AJUSTAR: descreva o conteúdo desta pasta
-├── scripts/            # AJUSTAR: geração de instâncias, execução dos experimentos, etc.
-├── Relatorios/         # relatórios e análises dos experimentos
-├── Extras/             # AJUSTAR: descreva o conteúdo desta pasta
-└── executavel/         # AJUSTAR: binários compilados
+├── CMakeLists.txt           # configuração de build
+├── README.md
+├── include/
+│   ├── algoritmos/          # cabeçalhos dos algoritmos (bubble_sort.hpp, ...)
+│   └── utils/               # cabeçalhos utilitários
+├── src/
+│   ├── main.cpp             # ponto de entrada
+│   ├── algoritmos/          # implementação de cada algoritmo
+│   └── utils/               # implementação dos utilitários
+├── dados/                   # arquivos de entrada, saída e tempo, uma pasta por algoritmo
+│   ├── bubble_sort/
+│   ├── insertion_sort/
+│   ├── selection_sort/
+│   ├── shell_sort/
+│   ├── merge_sort/
+│   └── quick_sort/
+├── scripts/
+│   └── gerar_grafico_tabela.py   # gera gráficos e tabelas a partir dos tempos
+├── relatorios/              # relatórios das entregas (PDF)
+└── extras/
+    ├── graficos/
+    ├── tabelas/
+    └── tempos/
 ```
+
+### Módulos utilitários (`utils`)
+
+| Módulo | Responsabilidade |
+|---|---|
+| `algoritmos` | seleção e chamada dos algoritmos |
+| `arquivos` | leitura e escrita dos arquivos de entrada, saída e tempo |
+| `caminhos` | caminhos das pastas de dados |
+| `executar` | execução dos experimentos |
+| `gerador` | geração das instâncias de entrada |
+| `menu` | menu interativo do programa |
+| `tempo` | medição do tempo de execução |
 
 ## Requisitos
 
-- Compilador com suporte a C++17 ou superior (GCC, Clang ou MSVC)
+- Compilador C++ com suporte a C++17 ou superior (MinGW/GCC, Clang ou MSVC)
 - [CMake](https://cmake.org/) 3.10 ou superior *(AJUSTAR conforme o seu `CMakeLists.txt`)*
+- Python 3 (testado com 3.14) com `matplotlib` e `pandas`, para gerar gráficos e tabelas (dependências em `requirements.txt`)
 
 ## Como compilar
 
@@ -48,17 +75,23 @@ Projeto_de_Algoritmos/
 git clone https://github.com/leomzto/Projeto_de_Algoritmos.git
 cd Projeto_de_Algoritmos
 
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
+cmake -B cmake-build-release -DCMAKE_BUILD_TYPE=Release
+cmake --build cmake-build-release
 ```
+
+Para a versão de depuração, use `-DCMAKE_BUILD_TYPE=Debug` e a pasta `cmake-build-debug`.
 
 ## Como executar
 
+Depois de compilar, execute o programa gerado em `cmake-build-release/`:
+
 ```bash
-./build/NOME_DO_EXECUTAVEL
+./cmake-build-release/NOME_DO_EXECUTAVEL
 ```
 
-> AJUSTAR: substitua `NOME_DO_EXECUTAVEL` pelo nome definido no `CMakeLists.txt` e documente aqui os argumentos ou o menu do programa, se houver.
+*(AJUSTAR: substitua pelo nome do executável definido no `CMakeLists.txt`. No Windows, use o `.exe`.)*
+
+O programa abre um **menu interativo** para gerar as instâncias e executar os algoritmos. *(AJUSTAR: descreva as opções do menu.)*
 
 ## Experimentos
 
@@ -68,14 +101,27 @@ Os algoritmos são avaliados com:
 - **Tamanhos:** de instâncias pequenas até 1.000.000 de elementos
 - **Métrica:** tempo de execução
 
-Os arquivos de entrada e os resultados de cada execução ficam em *(AJUSTAR: caminho das pastas de entrada e saída)*.
+Para cada algoritmo, os arquivos de entrada, saída e tempo ficam em `dados/<nome_do_algoritmo>/`. Os tempos consolidados, tabelas e gráficos ficam em `extras/`.
 
-Os resultados completos, com tabelas, gráficos e análise de complexidade, estão em [`Relatorios/`](Relatorios/).
+Para gerar gráficos e tabelas a partir dos tempos:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate          # Windows (PowerShell)
+# source .venv/bin/activate     # Linux/macOS
+pip install -r requirements.txt
+python scripts/gerar_grafico_tabela.py
+```
+
+## Relatórios
+
+Os relatórios com a análise dos resultados estão em [`relatorios/`](relatorios/).
 
 ## Tecnologias
 
 - C++
 - CMake
+- Python (gráficos e tabelas)
 - LaTeX (relatórios)
 
 ## Autor
