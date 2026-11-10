@@ -17,3 +17,5 @@ tamanho,tipo,tempo
 10000,Randomico,0.0009459
 100000,Randomico,0.0103009
 1000000,Randomico,0.097165
+10,Crescente,4.8e-06
+100,decrescente,8.7e-06
