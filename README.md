@@ -144,4 +144,4 @@ Os relatórios com a análise dos resultados estão em [`relatorios/`](relatorio
 
 ## Autor
 
-**Leonardo** — [@leomzto](https://github.com/leomzto)
+**Leonardo Manzato** — [@leomzto](https://github.com/leomzto)
