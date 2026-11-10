@@ -73,8 +73,8 @@ Projeto_de_Algoritmos/
 ## Como compilar
 
 ```bash
-git clone https://github.com/leomzto/Projeto_de_Algoritmos.git
-cd Projeto_de_Algoritmos
+git clone https://github.com/leomzto/projeto-de-algoritmos.git
+cd projeto-de-algoritmos
 ```
 
 **Linux / macOS**
