@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(Projeto_de_Algoritimo)
+project(Projeto_de_Algoritmo)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
-add_executable(Projeto_de_Algoritimo
+add_executable(Projeto_de_Algoritmo
 
         # main
-        main.cpp
+        src/main.cpp
 
         # algoritmos
         src/algoritmos/insertion_sort.cpp
@@ -28,6 +28,6 @@ add_executable(Projeto_de_Algoritimo
 )
 
 # *.hpp
-target_include_directories(Projeto_de_Algoritimo PRIVATE
+target_include_directories(Projeto_de_Algoritmo PRIVATE
         include
 )
