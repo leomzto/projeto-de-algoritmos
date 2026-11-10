@@ -1,0 +1,42 @@
+\quad O Bubble Sort é um algoritmo de ordenação baseado na comparação
+e troca de elementos adjacentes. Seu funcionamento consiste em percorrer
+o vetor várias vezes, comparando elementos vizinhos e realizando uma troca
+quando eles estão fora da ordem desejada. Dessa forma, os maiores elementos
+vão sendo deslocados gradualmente para o final do vetor, de maneira
+semelhante ao movimento de bolhas subindo em um líquido.
+
+\quad A cada passagem pelo vetor, os elementos adjacentes são comparados.
+Caso o elemento da esquerda seja maior que o elemento da direita, suas
+posições são trocadas. Após cada passagem, pelo menos um dos maiores
+elementos ainda não ordenados é colocado em sua posição definitiva no final
+do vetor. O processo continua até que todos os elementos estejam
+ordenados.
+
+\begin{lstlisting}[caption={Implementação do Bubble Sort}]
+void bubbleSort(int* vetor, int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        bool trocou = false;
+
+        for (int j = 0; j < tamanho - i - 1; j++) {
+            if (vetor[j] > vetor[j + 1]) {
+                int temp = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j + 1] = temp;
+                trocou = true;
+            }
+        }
+        if (!trocou)
+            break;
+    }
+}
+\end{lstlisting}
+
+\quad No primeiro laço, a variável $i$ representa a quantidade de
+passagens já realizadas pelo vetor. O segundo laço percorre os elementos
+ainda não ordenados, comparando cada elemento com seu vizinho à direita.
+
+\quad Quando o elemento da esquerda é maior que o elemento da direita,
+é realizada uma troca entre eles utilizando a variável auxiliar
+\texttt{temp}. Ao final de cada passagem, o maior elemento da parte ainda
+não ordenada é levado para o final do vetor. Por isso, o limite do segundo
+laço diminui a cada nova passagem.

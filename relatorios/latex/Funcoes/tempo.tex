@@ -1,0 +1,27 @@
+\begin{lstlisting}[
+    caption={Função utilizada para medir o tempo de execução},
+    label={lst:calcular-tempo}
+]
+double calcularTempo(void (*algoritmo)(int*, int), int* vetor, int tamanho) {
+    // salvar tempo do inicio
+    auto inicio = chrono::steady_clock::now();
+
+    // executar o algoritmo
+    algoritmo(vetor, tamanho);
+
+    // salvar o tempo do fim da execucao
+    auto fim = chrono::steady_clock::now();
+
+    // calcular duracao
+    chrono::duration<double> tempo = fim - inicio;
+
+    return tempo.count();
+}
+\end{lstlisting}
+
+A função apresentada no Código~\ref{lst:calcular-tempo} é responsável por
+medir o tempo de execução do algoritmo. Para isso, registra o instante
+inicial, executa o algoritmo, registra o instante final e calcula a
+diferença entre os dois instantes.
+
+O valor retornado pela função representa o tempo de execução em segundos.

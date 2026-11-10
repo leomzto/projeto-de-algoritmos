@@ -1,0 +1,95 @@
+\quad O \textit{Quick Sort} é um algoritmo de ordenação baseado na
+estratégia de divisão e conquista. Sua ideia principal é escolher um
+elemento do vetor, chamado de pivô, e reorganizar os demais elementos de
+modo que os valores menores que o pivô fiquem de um lado e os valores
+maiores fiquem do outro.
+
+\quad Após esse particionamento, o algoritmo é aplicado recursivamente às
+duas partes formadas, até que cada partição possua no máximo um elemento.
+Diferentemente do \textit{Merge Sort}, não é necessário um vetor auxiliar
+para intercalar os resultados, ja que a ordenação ocorre no vetor.
+
+\quad Foram implementadas duas versões do algoritmo, que
+diferem apenas na função de particionamento utilizada, mais
+especificamente na escolha do pivô. Na versão 1 (\texttt{particao\_v1}),
+o pivô é o primeiro elemento da partição, obtido diretamente em
+\texttt{vetor[esq]}, sem custo adicional. Na versão 2
+(\texttt{particao\_v2}), o pivô é a média aritmética dos elementos da
+partição, calculada a cada chamada ao percorrer todos os elementos entre
+\texttt{esq} e \texttt{dir}, somá-los e dividir o resultado pela
+quantidade de elementos. Como a média nem sempre corresponde a um
+elemento do vetor, nessa versão o particionamento é feito por comparação
+com o valor da média, e não com uma posição específica. Fora isso, as duas funções são idênticas.
+
+\newpage
+
+\begin{lstlisting}[caption={Implementação do Quick Sort}]
+void quickSort(int* vetor, int tamanho, int versao) {
+
+    auto ordena = [&](auto&& self, int esq, int dir) -> void {
+        while (esq < dir) {
+            int i, j;
+
+            if (versao == 1)
+                particao_v1(vetor, esq, dir, i, j);
+            else if (versao == 2)
+                particao_v2(vetor, esq, dir, i, j);
+
+            int tamEsq = j - esq + 1;
+            int tamDir = dir - i + 1;
+
+            if (tamEsq < tamDir) {
+                if (esq < j)
+                    self(self, esq, j);
+
+                esq = i;
+            } else {
+                if (i < dir)
+                    self(self, i, dir);
+
+                dir = j;
+            }
+        }
+    };
+
+    if (tamanho > 1 && (versao == 1 || versao == 2))
+        ordena(ordena, 0, tamanho - 1);
+}
+\end{lstlisting}
+
+\quad Nas duas funções de particionamento, os índices \texttt{i} e
+\texttt{j} começam nas extremidades da partição e se aproximam até se
+cruzarem. O índice \texttt{i} avança enquanto encontra elementos menores
+que o pivô, e o índice \texttt{j} volta enquanto encontra elementos
+maiores que o pivô. Quando ambos param, e \texttt{i} ainda não
+ultrapassou \texttt{j}, os elementos são trocados de posição e os dois
+índices continuam.
+
+\quad No final do particionamento, o índice \texttt{j} indica o fim da
+partição da esquerda e o índice \texttt{i} indica o início da partição da
+direita, assim, os elementos à esquerda são menores ou iguais
+ao pivô e os elementos à direita são maiores ou iguais a ele. A
+diferença entre as versões está, portanto, no custo e na qualidade da
+escolha do pivô: a versão 1 não exige nenhuma operação extra, enquanto a
+versão 2 acrescenta um custo linear a cada particionamento, em troca de
+uma divisão potencialmente mais equilibrada.
+
+\quad A função \texttt{quickSort} recebe o vetor, seu tamanho e a versão
+desejada. Uma função lambda recursiva (\texttt{ordena})
+recebe os limites \texttt{esq} e \texttt{dir} da partição atual, chama a
+função de particionamento correspondente à versão escolhida e calcula o
+tamanho das duas partições geradas, \texttt{tamEsq} e \texttt{tamDir}.
+
+\quad Para limitar a profundidade da recursão, a chamada recursiva é feita
+apenas sobre a menor das duas partições, enquanto a maior é tratada pelo
+próprio laço \texttt{while}, ajustando os limites \texttt{esq} ou
+\texttt{dir}. O processo termina quando a partição possui no máximo um
+elemento.
+
+\quad A escolha do pivô influencia diretamente o balanceamento das
+partições. Na versão 1, vetores já ordenados de forma crescente ou
+decrescente tendem a gerar partições muito desiguais, aproximando o
+algoritmo do pior caso. Na versão 2, a média aritmética tende a dividir
+melhor os valores da partição, porém exige a soma dos elementos a cada
+chamada, o que acrescenta um custo adicional. Esses efeitos serão
+observados nos experimentos apresentados neste trabalho.

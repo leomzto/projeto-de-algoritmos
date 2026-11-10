@@ -1,0 +1,83 @@
+\quad A realização deste trabalho permitiu compreender o funcionamento dos
+algoritmos \textit{Insertion Sort}, \textit{Bubble Sort}, \textit{Selection
+Sort}, \textit{Shell Sort}, \textit{Merge Sort} e \textit{Quick Sort}, este
+último em duas versões, além de analisar seus comportamentos em diferentes
+tipos de entrada. Por meio das implementações, dos testes de mesa, das
+análises de complexidade e dos experimentos práticos, foi possível observar
+as diferenças entre as estratégias utilizadas por cada algoritmo.
+
+\quad A análise teórica mostrou que o \textit{Insertion Sort} apresenta
+complexidade $\Theta(n)$ no melhor caso, quando o vetor já está ordenado, e
+$\Theta(n^2)$ no caso médio e no pior caso. O \textit{Bubble Sort} e o
+\textit{Selection Sort}, considerando as implementações utilizadas neste
+trabalho, apresentam complexidade $\Theta(n^2)$ nos três casos analisados.
+Já o \textit{Shell Sort} possui comportamento dependente da sequência de
+\textit{gaps} utilizada. Na implementação estudada, com a divisão sucessiva
+do \textit{gap} por 2, o melhor caso apresenta crescimento de ordem
+$\Theta(n\log n)$, enquanto o pior caso apresenta complexidade
+$\Theta(n^2)$. O \textit{Merge Sort} apresenta complexidade temporal
+$\Theta(n\log n)$ no melhor caso, no caso médio e no pior caso, além de
+necessitar de memória auxiliar proporcional ao tamanho do vetor. Por fim, o
+\textit{Quick Sort} apresenta complexidade $\Theta(n\log n)$ no melhor caso
+e no caso médio, e $\Theta(n^2)$ no pior caso, que ocorre quando o pivô
+gera partições muito desbalanceadas. Por ordenar o vetor no próprio local e
+realizar a chamada recursiva apenas sobre a menor partição, a implementação
+utilizada exige memória auxiliar de ordem $\Theta(\log n)$.
+
+\quad Os experimentos realizados com entradas crescentes, decrescentes e
+aleatórias permitiram observar na prática as diferenças previstas pela
+análise teórica. No \textit{Insertion Sort}, a organização inicial dos
+elementos possui influência significativa no tempo de execução: o tempo é
+praticamente nulo quando o vetor já está ordenado e aproximadamente o dobro
+do observado em entradas aleatórias quando ele está em ordem decrescente.
+No \textit{Selection Sort}, o tempo foi semelhante nos três tipos de
+entrada, pois a quantidade de comparações não depende da organização
+inicial. O \textit{Bubble Sort} apresentou os maiores tempos em entradas
+decrescentes e aleatórias, mas, devido à interrupção antecipada quando não
+há trocas, teve tempo desprezível em entradas crescentes. O \textit{Shell
+Sort} e o \textit{Merge Sort} apresentaram tempos muito inferiores aos dos
+algoritmos quadráticos nos três tipos de entrada, o que evidencia a
+vantagem dos algoritmos de custo próximo de $\Theta(n\log n)$ para
+instâncias grandes.
+
+\quad Os experimentos com o \textit{Quick Sort} evidenciaram a importância
+da escolha do pivô. A versão 1, que utiliza o primeiro elemento, apresentou
+tempos próximos aos dos algoritmos quadráticos em entradas crescentes e
+decrescentes, pois nesses casos o pivô é sempre o menor ou o maior valor da
+partição, levando o algoritmo ao pior caso. Em entradas aleatórias, porém,
+seu tempo foi comparável ao dos algoritmos de custo $\Theta(n\log n)$. A
+versão 2, que utiliza a média aritmética dos elementos como pivô, manteve
+as partições equilibradas nos três tipos de entrada, com tempos muito
+baixos, ao custo de um percurso adicional a cada particionamento. Vale
+ressaltar que esse bom desempenho depende da distribuição dos valores
+utilizados nos testes, pois a média aritmética pode gerar partições
+desbalanceadas quando os valores são muito discrepantes.
+
+\quad Também foi possível observar que o aumento do tamanho da entrada
+provoca um crescimento no tempo de execução dos algoritmos. Esse
+crescimento se torna mais significativo nos algoritmos e situações em que
+há maior quantidade de comparações, trocas ou deslocamentos. Dessa forma,
+os resultados experimentais possibilitam relacionar o comportamento
+observado nos gráficos e tabelas com as complexidades obtidas na análise
+teórica.
+
+\quad No caso do \textit{Shell Sort}, teoricamente, a escolha do divisor
+influencia a sequência de \textit{gaps} utilizada: um divisor menor produz
+uma quantidade maior de etapas, enquanto um divisor maior reduz essa
+quantidade. Entretanto, a quantidade de etapas, por si só, não determina o
+tempo de execução, pois a sequência de \textit{gaps} também influencia a
+quantidade de elementos que precisam ser comparados e deslocados. Como a
+alteração do divisor não pôde ser implementada, os experimentos deste
+trabalho utilizaram apenas o divisor 2, e a comparação entre diferentes
+sequências de \textit{gaps} permanece como possibilidade de trabalho
+futuro.
+
+\quad Dessa forma, o trabalho permitiu relacionar conceitos teóricos de
+análise de algoritmos com resultados obtidos por meio de experimentos
+práticos. A comparação entre os seis algoritmos, considerando as duas
+versões do \textit{Quick Sort}, mostrou que, apesar de todos possuírem o
+mesmo objetivo de ordenar os elementos, suas estratégias de execução
+produzem comportamentos diferentes de acordo com o tamanho e a organização
+inicial da entrada. Os algoritmos de custo $\Theta(n\log n)$ se destacaram
+em instâncias grandes, desde que, no caso do \textit{Quick Sort}, a escolha
+do pivô evite partições desbalanceadas.

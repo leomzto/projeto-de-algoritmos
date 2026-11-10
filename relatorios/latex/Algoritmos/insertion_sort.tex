@@ -1,0 +1,28 @@
+\quad O Insertion Sort é um algoritmo de ordenação baseado na comparação
+e inserção dos elementos em suas posições corretas. Seu funcionamento é
+semelhante ao ato de organizar cartas de baralho: os elementos são
+analisados um por vez e cada novo elemento é inserido na posição adequada
+da parte que já está ordenada.
+
+\quad Inicialmente, considera-se que o primeiro elemento do vetor já está
+ordenado. Em seguida, o algoritmo seleciona o próximo elemento, chamado de
+chave, e compara seu valor com os elementos anteriores. Enquanto esses
+elementos forem maiores que a chave, eles são deslocados uma posição para
+a direita. Ao final, a chave é inserida na posição correta.
+
+\begin{lstlisting}[caption={Implementação do Insertion Sort}]
+void insertionSort(int* vetor, int tamanho) {
+    for (int i = 1; i < tamanho; i++) {
+
+        int chave = vetor[i];
+        int j = i - 1;
+
+        while (j >= 0 && vetor[j] > chave) {
+            vetor[j + 1] = vetor[j];
+            j--;
+        }
+
+        vetor[j + 1] = chave;
+    }
+}
+\end{lstlisting}

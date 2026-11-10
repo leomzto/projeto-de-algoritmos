@@ -1,0 +1,270 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{tabto}
+\usepackage{hyperref}
+
+\geometry{
+    top=3cm,
+    left=3cm,
+    bottom=2cm,
+    right=2cm
+}
+
+\setstretch{1.5}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single
+}
+
+\author{Leonardo Padovani Manzato}
+
+\begin{document}
+
+% --------------------------------------------------
+% PRIMEIRA CAPA
+% --------------------------------------------------
+
+\begin{titlepage}
+    \begin{center}
+        \textbf{Universidade Federal de Viçosa}\\
+        \textit{Campus}\\
+        \textbf{Rio Paranaíba}
+
+        \vspace{4cm}
+
+        Leonardo Padovani Manzato -- 9862
+
+        \vspace{5cm}
+
+        \textbf{Projeto de análise de algoritmos de ordenação}
+
+        \vfill
+
+        Rio Paranaíba -- MG\\
+        2026
+    \end{center}
+\end{titlepage}
+
+% --------------------------------------------------
+% SEGUNDA CAPA
+% --------------------------------------------------
+
+\begin{titlepage}
+    \begin{center}
+        \textbf{Universidade Federal de Viçosa}\\
+        \textit{Campus}\\
+        \textbf{Rio Paranaíba}
+
+        \vspace{3cm}
+
+        Leonardo Padovani Manzato -- 9862
+
+        \vspace{4cm}
+
+        \textbf{Projeto de análise de algoritmos de ordenação}
+
+        \vspace{3cm}
+
+        \begin{flushright}
+            \begin{minipage}{0.5\textwidth}
+                Trabalho apresentado para obtenção de créditos na
+                disciplina SIN213 -- Projeto de Algoritmo da Universidade
+                Federal de Viçosa -- Campus de Rio Paranaíba, ministrada
+                pelo Professor Pedro Moisés de Souza.
+            \end{minipage}
+        \end{flushright}
+
+        \vfill
+
+        Rio Paranaíba -- MG\\
+        2026
+    \end{center}
+\end{titlepage}
+
+% --------------------------------------------------
+% RESUMO
+% --------------------------------------------------
+
+\section{RESUMO}
+\input{Resumo}
+\newpage
+
+% --------------------------------------------------
+% SUMÁRIO
+% --------------------------------------------------
+
+\tableofcontents
+\newpage
+
+% --------------------------------------------------
+% INTRODUÇÃO
+% --------------------------------------------------
+
+\section{INTRODUÇÃO}
+\input{introducao}
+\newpage
+
+% --------------------------------------------------
+% ALGORITMOS
+% --------------------------------------------------
+
+\section{ALGORITMOS}
+
+\subsection{Insertion Sort}
+\input{Algoritmos/insertion_sort}
+
+\subsection{Bubble Sort}
+\input{Algoritmos/bubble_sort}
+
+\subsection{Selection Sort}
+\input{Algoritmos/selection_sort}
+
+\subsection{Shell Sort}
+\input{Algoritmos/shell_sort}
+
+\subsection{Merge Sort}
+\input{Algoritmos/merge_sort}
+
+\subsection{Quick Sort}
+\input{Algoritmos/quick_sort}
+
+\newpage
+
+% --------------------------------------------------
+% ANÁLISE DE COMPLEXIDADE
+% --------------------------------------------------
+
+\section{ANÁLISE DE COMPLEXIDADE}
+
+\subsection{Insertion Sort}
+\input{Analise/insertion_sort}
+
+\subsection{Bubble Sort}
+\input{Analise/bubble_sort}
+
+\subsection{Selection Sort}
+\input{Analise/selection_sort}
+
+\subsection{Shell Sort}
+\input{Analise/shell_sort}
+
+\subsection{Merge Sort}
+\input{Analise/merge_sort}
+
+\subsection{Quick Sort}
+\input{Analise/quick_sort}
+
+\newpage
+
+% --------------------------------------------------
+% TABELAS E GRÁFICOS
+% --------------------------------------------------
+
+\section{TABELAS E GRÁFICOS}
+
+\subsection{Insertion Sort}
+\input{Tabela_Grafico/insertion_sort}
+
+\subsection{Bubble Sort}
+\input{Tabela_Grafico/bubble_sort}
+
+\subsection{Selection Sort}
+\input{Tabela_Grafico/selection_sort}
+
+\subsection{Shell Sort}
+\input{Tabela_Grafico/shell_sort}
+
+\subsection{Merge Sort}
+\input{Tabela_Grafico/merge_sort}
+
+\subsection{Quick Sort}
+\input{Tabela_Grafico/quick_sort}
+
+\newpage
+
+% --------------------------------------------------
+% COMPARAÇÃO ENTRE OS ALGORITMOS
+% --------------------------------------------------
+
+\section{COMPARAÇÃO ENTRE OS ALGORITMOS}
+
+Além da análise individual de cada algoritmo, foram realizados
+experimentos comparativos entre o Insertion Sort, Bubble Sort,
+Selection Sort, Shell Sort, Merge Sort e Quick Sort (em 2 versões diferentes)
+considerando os três tipos de entrada utilizados nos experimentos: 
+crescente, decrescente e aleatória.
+
+\subsection{Entrada crescente}
+\input{Comparacoes/crescente}
+
+\subsection{Entrada decrescente}
+\input{Comparacoes/decrescente}
+
+\subsection{Entrada aleatória}
+\input{Comparacoes/aleatoria}
+
+\newpage
+
+% --------------------------------------------------
+% ATIVIDADES MANUSCRITAS
+% --------------------------------------------------
+
+\section{ATIVIDADES MANUSCRITAS}
+\input{Analise/atividades_manuscritas}
+
+\newpage
+
+% --------------------------------------------------
+% CONCLUSÃO
+% --------------------------------------------------
+
+\section{CONCLUSÃO}
+\input{conclusao}
+
+\newpage
+
+% --------------------------------------------------
+% REFERÊNCIAS
+% --------------------------------------------------
+
+\section{REFERÊNCIAS BIBLIOGRÁFICAS}
+\input{referencias}
+
+\newpage
+
+% --------------------------------------------------
+% FUNÇÕES
+% --------------------------------------------------
+\section{Funções}
+
+\subsection{Calculo do tempo de execução}
+\input{Funcoes/tempo}
+
+\newpage
+
+\subsection{Execução dos algoritmos}
+\input{Funcoes/executavel}
+
+\end{document}

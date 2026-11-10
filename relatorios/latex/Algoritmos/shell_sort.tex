@@ -1,0 +1,69 @@
+\quad O Shell Sort é um algoritmo de ordenação baseado no Insertion Sort,
+porém utiliza comparações entre elementos que estão separados por
+determinados intervalos, chamados de \textit{gaps}. Essa estratégia
+permite reduzir gradualmente a desordem do vetor antes da etapa final de
+ordenação.
+
+\quad Inicialmente, é definido um valor de \textit{gap} que determina a
+distância entre os elementos que serão comparados. O vetor é então
+percorrido considerando essa distância, realizando uma ordenação por
+inserção entre os elementos pertencentes aos diferentes grupos formados.
+Após cada etapa, o valor do \textit{gap} é reduzido utilizando um divisor,
+fazendo com que os elementos sejam comparados a distâncias cada vez
+menores.
+
+\quad O processo continua até que o \textit{gap} seja igual a 1. Nesse
+momento, é realizada uma última ordenação semelhante ao Insertion Sort,
+porém o vetor já se encontra parcialmente ordenado devido às etapas
+anteriores, reduzindo bastante a quantidade de deslocamentos necessários.
+
+\begin{lstlisting}[caption={Implementação do Shell Sort}]
+void shellSort(int* vetor, int tamanho, int divisor) {
+
+    for (int gap = tamanho / divisor; gap > 0; gap /= divisor) {
+        for (int i = gap; i < tamanho; i++) { 
+
+            int temp = vetor[i]; 
+
+            int j = i;
+
+            while (j >= gap && vetor[j - gap] > temp) {
+
+                vetor[j] = vetor[j - gap]; 
+                j -= gap; 
+            }
+
+            vetor[j] = temp; 
+        }
+    }
+}
+\end{lstlisting}
+
+\quad Na primeira parte do algoritmo, o valor inicial do \textit{gap} é
+obtido pela divisão do tamanho do vetor pelo divisor informado. A cada
+nova etapa, o \textit{gap} é novamente dividido pelo mesmo divisor. Dessa
+forma, o intervalo entre os elementos comparados diminui
+progressivamente.
+
+\quad O segundo laço percorre o vetor a partir da posição correspondente
+ao \textit{gap}. Para cada elemento, a variável \texttt{temp} armazena
+seu valor, enquanto o terceiro laço desloca os elementos maiores que
+\texttt{temp} para a posição seguinte dentro do intervalo definido pelo
+\textit{gap}.
+
+\quad Quando não existem mais elementos maiores que \texttt{temp} na
+sequência considerada, o valor é inserido em sua posição correta. Quando
+o \textit{gap} chega a 1, o algoritmo realiza uma ordenação por inserção
+considerando elementos consecutivos. Como as etapas anteriores já
+reduziram parte da desordem do vetor, essa última etapa tende a exigir
+menos deslocamentos.
+
+\quad Inicialmente, pretendia-se permitir a alteração do divisor utilizado
+na redução dos \textit{gaps} durante a execução do algoritmo, com o objetivo
+de comparar o desempenho do Shell Sort utilizando diferentes sequências de
+\textit{gaps}. Entretanto, devido a dificuldades na implementação dessa
+alteração, foi adotado o divisor padrão igual a 2 para os experimentos
+realizados neste trabalho. Dessa forma, a sequência de \textit{gaps} é
+obtida pela divisão sucessiva do tamanho do vetor por 2 até que o
+\textit{gap} seja igual a 1.
+

@@ -1,0 +1,106 @@
+O algoritmo Shell Sort apresenta um comportamento diferente dos demais algoritmos analisados, pois sua complexidade depende da sequência de \textit{gaps} utilizada. Neste trabalho, o \textit{gap} inicial é obtido pela divisão do tamanho do vetor pelo divisor escolhido e, a cada etapa, é novamente dividido pelo mesmo divisor até atingir o valor 1.
+
+Na implementação utilizada nos experimentos, foi adotado o divisor igual a 2. Dessa forma, para um vetor de tamanho \(n\), a sequência de \textit{gaps} é obtida aproximadamente por:
+
+\begin{equation}
+\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots,1
+\end{equation}
+
+Por exemplo, para um vetor de tamanho 64, utilizando o divisor 2, a sequência de \textit{gaps} será:
+
+\begin{equation}
+32,16,8,4,2,1
+\end{equation}
+
+Já utilizando o divisor 4, a sequência será:
+
+\begin{equation}
+16,4,1
+\end{equation}
+
+Assim, um divisor maior tende a reduzir a quantidade de etapas realizadas. Entretanto, isso não significa necessariamente que o algoritmo será mais rápido, pois o desempenho também depende da quantidade de comparações e deslocamentos realizados em cada etapa e da desordem restante quando o \textit{gap} atinge o valor 1.
+
+\subsubsection{Melhor caso}
+
+O melhor caso ocorre quando o vetor já está ordenado de forma crescente. Nessa situação, os elementos já estão nas posições adequadas, de modo que as etapas de ordenação não precisam realizar deslocamentos significativos.
+
+Em cada etapa, o algoritmo percorre os elementos do vetor, realizando comparações para verificar se a ordem está correta. Considerando uma sequência de \textit{gaps} obtida pela divisão sucessiva por uma constante maior que 1, o número de etapas é proporcional a \(\log n\).
+
+Como cada etapa realiza aproximadamente \(n\) verificações no vetor, o custo pode ser estimado por:
+
+\begin{equation}
+T(n) = O(n\log n)
+\end{equation}
+
+Essa expressão representa uma estimativa para o número de operações nesse cenário, considerando a sequência de \textit{gaps} adotada. A complexidade exata deve levar em conta os detalhes da implementação e a sequência utilizada.
+
+\subsubsection{Pior caso}
+
+No pior caso, a disposição inicial dos elementos pode exigir uma grande quantidade de comparações e deslocamentos. Embora as etapas com \textit{gaps} maiores reduzam parte da desordem, a etapa final, com \textit{gap} igual a 1, pode exigir um número elevado de operações.
+
+Nessa etapa, o Shell Sort realiza uma ordenação equivalente ao Insertion Sort sobre o vetor inteiro. No pior caso, a quantidade de operações dessa etapa pode ser representada por:
+
+\begin{equation}
+T(n) = 1+2+3+\cdots+(n-1)
+\end{equation}
+
+Aplicando a fórmula da soma dos termos de uma progressão aritmética, temos:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+Desenvolvendo a expressão:
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+O termo de maior crescimento é \(n^2\). Portanto, a etapa final pode apresentar custo quadrático:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Entretanto, essa análise considera o custo máximo da etapa com \textit{gap} igual a 1. Para determinar a complexidade de pior caso do Shell Sort completo, é necessário considerar também o efeito das etapas anteriores e a sequência de \textit{gaps} utilizada.
+
+\subsubsection{Caso médio}
+
+O caso médio considera entradas com diferentes disposições dos elementos, como vetores gerados aleatoriamente. Diferentemente de algoritmos como Insertion Sort, Bubble Sort e Selection Sort, cuja análise pode ser apresentada sem depender de uma sequência de intervalos, o comportamento do Shell Sort depende diretamente da sequência de \textit{gaps} adotada.
+
+Alterar o divisor modifica a quantidade de etapas e os intervalos utilizados nas comparações. Por exemplo, para um vetor de tamanho 64, o divisor 2 produz a sequência:
+
+\begin{equation}
+32,16,8,4,2,1
+\end{equation}
+
+Enquanto o divisor 4 produz:
+
+\begin{equation}
+16,4,1
+\end{equation}
+
+Apesar de a segunda sequência possuir menos etapas, isso não garante um menor tempo de execução. O desempenho depende de como cada etapa reorganiza os elementos e de quanto trabalho permanece para a etapa final.
+
+Dessa forma, não é adequado atribuir uma única complexidade média ao Shell Sort sem especificar a sequência de \textit{gaps} e as condições consideradas na análise. Neste trabalho, o caso médio será avaliado experimentalmente por meio dos tempos de execução obtidos para vetores com elementos em ordem aleatória.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Análise da complexidade do algoritmo Shell Sort}
+    \label{tab:complexidade-shell}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Caso} & \textbf{Complexidade de tempo} \\
+        \hline
+        Melhor caso & Depende da sequência de \textit{gaps} \\
+        Caso médio & Depende da sequência de \textit{gaps} \\
+        Pior caso & Depende da sequência de \textit{gaps} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Conclui-se que o Shell Sort apresenta uma complexidade que depende da sequência de \textit{gaps} utilizada. O divisor determina como os intervalos são reduzidos e influencia a quantidade de etapas e de operações realizadas durante a ordenação.
+
+Neste trabalho, foi utilizado o divisor 2 nos experimentos, produzindo uma sequência de \textit{gaps} obtida pela divisão sucessiva por 2 até atingir o valor 1. Uma possível extensão dos experimentos seria comparar diferentes divisores, permitindo investigar como a escolha da sequência de \textit{gaps} influencia o tempo de execução do algoritmo.

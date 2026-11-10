@@ -1,0 +1,103 @@
+O algoritmo Merge Sort apresenta comportamento semelhante nos casos
+crescente, decrescente e aleatório, pois divide recursivamente o vetor
+em duas partes e realiza a intercalação dos elementos em cada nível
+da recursão.
+
+\subsubsection{Melhor caso -- $\Theta(n\log n)$}
+
+O melhor caso ocorre quando o vetor já está ordenado de forma crescente.
+Mesmo nessa situação, o algoritmo continua dividindo o vetor em duas
+metades até atingir intervalos com um único elemento.
+
+Em seguida, as metades são intercaladas. Como a implementação realiza
+a cópia dos elementos para vetores auxiliares e percorre as partes
+durante a intercalação, o trabalho realizado em cada nível é
+proporcional a $n$.
+
+A quantidade de níveis de divisão é proporcional a $\log_2 n$.
+Portanto, o custo total pode ser representado por:
+
+\begin{equation}
+T(n) = 2T\left(\frac{n}{2}\right) + cn
+\end{equation}
+
+em que $c$ representa uma constante associada ao trabalho de
+intercalação.
+
+Como existem aproximadamente $\log_2 n$ níveis, cada um com custo
+proporcional a $n$, temos:
+
+\begin{equation}
+T(n) = \Theta(n\log n)
+\end{equation}
+
+Assim, o melhor caso do Merge Sort apresenta complexidade
+linearítmica.
+
+\subsubsection{Pior caso -- $\Theta(n\log n)$}
+
+O pior caso ocorre quando a intercalação precisa comparar os elementos
+das duas metades até que uma delas seja completamente percorrida.
+Isso pode acontecer quando os elementos estão distribuídos de maneira
+que seja necessário intercalar valores de ambas as metades.
+
+Apesar do aumento do trabalho de comparação em cada intercalação, o
+algoritmo continua dividindo o vetor em duas partes e processando todos
+os elementos em cada nível.
+
+Dessa forma, a recorrência permanece:
+
+\begin{equation}
+T(n) = 2T\left(\frac{n}{2}\right) + cn
+\end{equation}
+
+Como o custo por nível é proporcional a $n$ e existem
+aproximadamente $\log_2 n$ níveis, temos:
+
+\begin{equation}
+T(n) = \Theta(n\log n)
+\end{equation}
+
+Portanto, o pior caso do Merge Sort também apresenta complexidade
+linearítmica.
+
+\subsubsection{Caso médio -- $\Theta(n\log n)$}
+
+No caso médio, considera-se uma distribuição aleatória dos elementos
+do vetor. O algoritmo realiza as divisões recursivas da mesma forma
+e intercala as partes ordenadas até completar a ordenação.
+
+Independentemente da distribuição inicial, todos os elementos precisam
+ser processados durante as intercalações de cada nível. Assim, o
+trabalho total continua sendo proporcional a $n$ por nível.
+
+Consequentemente, temos:
+
+\begin{equation}
+T(n) = \Theta(n\log n)
+\end{equation}
+
+Portanto, o caso médio do Merge Sort apresenta complexidade
+linearítmica.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Complexidades do algoritmo Merge Sort}
+    \label{tab:complexidade-merge}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Caso} & \textbf{Complexidade de tempo} \\
+        \hline
+        Melhor caso & $\Theta(n\log n)$ \\
+        Caso médio & $\Theta(n\log n)$ \\
+        Pior caso & $\Theta(n\log n)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\quad Conclui-se que o Merge Sort mantém complexidade temporal
+$\Theta(n\log n)$ nos três casos analisados. Entretanto, sua
+implementação convencional necessita de memória auxiliar proporcional
+ao tamanho do vetor.

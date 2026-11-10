@@ -1,0 +1,136 @@
+O algoritmo Bubble Sort apresenta comportamento semelhante nos diferentes
+tipos de entrada, pois realiza comparações entre elementos adjacentes
+durante sucessivas passagens pelo vetor. Sua complexidade de tempo é
+analisada considerando o melhor caso, o caso médio e o pior caso.
+
+\subsubsection{Melhor caso -- \texorpdfstring{$\Theta(n^2)$}{Theta(n²)}}
+
+O melhor caso ocorre quando o vetor já está ordenado de forma crescente.
+Mesmo nessa situação, a implementação utilizada continua realizando todas
+as comparações previstas pelos laços do algoritmo, embora nenhuma troca
+seja necessária.
+
+Considerando um vetor com $n$ elementos, na primeira passagem são
+realizadas $n-1$ comparações. Na segunda passagem, são realizadas $n-2$
+comparações, e assim sucessivamente até a última passagem, que realiza
+apenas uma comparação.
+
+Assim, o número total de comparações pode ser representado pela soma:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Essa soma corresponde à soma dos primeiros $n-1$ números naturais:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+Desenvolvendo a expressão:
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+O termo de maior crescimento é $n^2$. Portanto:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Assim, o melhor caso do Bubble Sort apresenta complexidade quadrática.
+
+\subsubsection{Pior caso -- \texorpdfstring{$\Theta(n^2)$}{Theta(n2)}}
+
+O pior caso ocorre quando o vetor está ordenado de forma decrescente e
+deseja-se ordená-lo de forma crescente. Nesse cenário, além de realizar
+todas as comparações previstas pelos laços, o algoritmo também precisa
+realizar uma grande quantidade de trocas entre os elementos.
+
+A quantidade de comparações realizadas permanece igual à do melhor caso,
+sendo representada por:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Aplicando a fórmula da soma:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+Além das comparações, são realizadas trocas dos elementos que estão fora
+de ordem. No pior caso, a quantidade de trocas também cresce
+quadraticamente.
+
+Como o termo dominante é $n^2$, temos:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Portanto, o pior caso do Bubble Sort apresenta complexidade quadrática.
+
+\subsubsection{Caso médio -- \texorpdfstring{$\Theta(n^2)$}{Theta(n²)}}
+
+O caso médio ocorre quando os elementos estão distribuídos de maneira
+aleatória. Nessa situação, o algoritmo continua realizando todas as
+passagens e comparações previstas pelos seus laços.
+
+A quantidade de comparações é dada por:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Aplicando a fórmula da soma:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+Embora a quantidade de trocas varie de acordo com a organização inicial
+dos elementos, o número de comparações continua sendo proporcional a
+$n^2$.
+
+Como o termo dominante é $n^2$, a complexidade assintótica é:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Portanto, no caso médio, o Bubble Sort também apresenta complexidade
+quadrática.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Complexidades do algoritmo Bubble Sort}
+    \label{tab:complexidade-bubble-analise}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Caso} & \textbf{Complexidade de tempo} \\
+        \hline
+        Melhor caso & $\Theta(n)$ \\
+        Caso médio & $\Theta(n^2)$ \\
+        Pior caso & $\Theta(n^2)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Conclui-se que o Bubble Sort apresenta complexidade quadrática nos três
+casos analisados. Mesmo quando o vetor já está ordenado, a implementação
+utilizada continua realizando as comparações das passagens previstas.
+Por esse motivo, o algoritmo pode apresentar desempenho limitado para
+grandes conjuntos de dados.

@@ -1,0 +1,130 @@
+O algoritmo Selection Sort apresenta comportamento semelhante nos
+diferentes tipos de entrada, pois a quantidade de comparações realizadas
+não depende da organização inicial dos elementos do vetor. Sua complexidade
+de tempo é analisada considerando o melhor caso, o caso médio e o pior caso.
+
+\subsubsection{Melhor caso -- \texorpdfstring{$\Theta(n^2)$}{Theta(n²)}}
+
+O melhor caso ocorre quando o vetor já está ordenado de forma crescente.
+Mesmo nessa situação, o algoritmo precisa percorrer a parte ainda não
+ordenada do vetor para verificar qual é o menor elemento.
+
+Considerando um vetor com $n$ elementos, na primeira iteração são
+realizadas $n-1$ comparações. Na segunda iteração, são realizadas $n-2$
+comparações, e assim sucessivamente até a última iteração, que realiza
+apenas uma comparação.
+
+A quantidade total de comparações pode ser representada pela soma:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Essa soma corresponde à soma dos primeiros $n-1$ números naturais:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+Desenvolvendo a expressão:
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+O termo de maior crescimento é $n^2$. Portanto:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Assim, o melhor caso do Selection Sort apresenta complexidade
+quadrática.
+
+\subsubsection{Pior caso -- $\Theta(n^2)$}
+
+O pior caso ocorre quando o vetor está organizado de forma que seja
+necessário realizar várias trocas para colocá-lo em ordem crescente.
+Entretanto, mesmo nesse cenário, a quantidade de comparações realizadas
+pelo algoritmo permanece a mesma.
+
+Na primeira iteração, são realizadas $n-1$ comparações; na segunda,
+$n-2$ comparações, e assim sucessivamente. Dessa forma:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Aplicando a fórmula da soma:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+Como o termo dominante é $n^2$, temos:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Portanto, o pior caso do Selection Sort apresenta complexidade
+quadrática.
+
+\subsubsection{Caso médio -- $\Theta(n^2)$}
+
+O caso médio ocorre quando os elementos estão distribuídos de maneira
+aleatória. Nessa situação, assim como nos demais casos, o algoritmo
+precisa percorrer toda a parte ainda não ordenada do vetor para encontrar
+o menor elemento.
+
+A quantidade de comparações continua sendo representada por:
+
+\begin{equation}
+T(n) = (n-1) + (n-2) + \cdots + 2 + 1
+\end{equation}
+
+Aplicando a fórmula da soma:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+Como o termo dominante é $n^2$, a complexidade assintótica é:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Portanto, no caso médio, o Selection Sort também apresenta complexidade
+quadrática.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Complexidades do algoritmo Selection Sort}
+    \label{tab:complexidade-bubble}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Caso} & \textbf{Complexidade de tempo} \\
+        \hline
+        Melhor caso & $\Theta(n^2)$ \\
+        Caso médio & $\Theta(n^2)$ \\
+        Pior caso & $\Theta(n^2)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Conclui-se que o Selection Sort apresenta complexidade quadrática nos
+três casos analisados. Diferentemente do Insertion Sort, a organização
+inicial do vetor não reduz significativamente a quantidade de comparações,
+pois o algoritmo precisa procurar o menor elemento em toda a parte ainda
+não ordenada a cada iteração.

@@ -1,0 +1,89 @@
+\quad O Merge Sort é um algoritmo de ordenação baseado na estratégia
+de divisão e conquista. Seu funcionamento consiste em dividir o vetor
+em partes menores, ordenar essas partes recursivamente e, em seguida,
+combinar os resultados para formar um único vetor ordenado.
+
+\quad Inicialmente, o vetor é dividido em duas metades. Esse processo
+continua até que cada parte contenha apenas um elemento, situação em
+que ela já está ordenada. Em seguida, a função \textit{merge} combina
+as duas metades, comparando seus elementos e colocando-os em ordem
+crescente no vetor original.
+
+\quad A função \textit{mergeSort} é responsável pelas divisões
+recursivas. Ela calcula o índice do meio do vetor, ordena a metade
+esquerda, ordena a metade direita e chama a função \textit{merge}
+para intercalar os resultados. A função \textit{merge}, por sua vez,
+utiliza dois vetores auxiliares para armazenar temporariamente os
+elementos das duas metades durante a intercalação.
+
+\begin{lstlisting}[caption={Implementação do Merge Sort}]
+void merge(int* vetor, int esq, int meio, int dir) {
+    int n1 = meio - esq + 1;
+    int n2 = dir - meio;
+
+    int* E = new int[n1];
+    int* D = new int[n2];
+
+    for (int i = 0; i < n1; i++)
+        E[i] = vetor[esq + i];
+
+    for (int j = 0; j < n2; j++)
+        D[j] = vetor[meio + 1 + j];
+
+    int i = 0, j = 0;
+    int k = esq;
+
+    while (i < n1 && j < n2) {
+        if (E[i] <= D[j]) {
+            vetor[k] = E[i];
+            i++;
+        } else {
+            vetor[k] = D[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        vetor[k] = E[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        vetor[k] = D[j];
+        j++;
+        k++;
+    }
+
+    delete[] E;
+    delete[] D;
+}
+
+void mergeSort(int* vetor, int tamanho,
+               int esq = 0, int dir = -1) {
+    if (dir == -1)
+        dir = tamanho - 1;
+
+    if (esq >= dir)
+        return;
+
+    int meio = esq + (dir - esq) / 2;
+
+    mergeSort(vetor, tamanho, esq, meio);
+    mergeSort(vetor, tamanho, meio + 1, dir);
+
+    merge(vetor, esq, meio, dir);
+}
+\end{lstlisting}
+
+\quad Ao utilizar a função \textit{mergeSort}, basta informar o vetor
+e seu tamanho. Os parâmetros \textit{esq} e \textit{dir} possuem
+valores padrão, permitindo que a primeira chamada considere todo o
+vetor. Nas chamadas recursivas, esses parâmetros delimitam as partes
+que serão ordenadas.
+
+\quad O processo de divisão termina quando o intervalo possui zero
+ou um elemento, condição identificada por \textit{esq} maior ou igual
+a \textit{dir}. Após as chamadas recursivas, as partes ordenadas são
+intercaladas até que todo o vetor esteja organizado em ordem crescente.

@@ -1,0 +1,115 @@
+\begin{lstlisting}[
+    caption={Função utilizada para executar os algoritmos de ordenação},
+    label={lst:executar-algoritmo}
+]
+void executarAlgoritmo(function<void(int*, int)> algoritmo,
+                            const string& nomeAlgoritmo,
+                            const string& caminhoBase,
+                            const string& caminhoCSV) {
+
+    int tipo = escolherTipoInstancia();
+    int tamanho = escolherTamanhoInstancia();
+
+    cout << "\nGerando instancia...\n";
+    int* vetor = gerarInstancia(tipo, tamanho);
+
+    if (vetor == nullptr) {
+        cout << "Erro ao gerar instancia.\n";
+        return;
+    }
+
+    const string nomeInstancia = obterNomeInstancia(tipo);
+    const string nomeArquivo =
+        nomeInstancia + "_" + to_string(tamanho) + ".txt";
+
+    const string caminhoEntradaBase =
+        caminhoBase + "Arquivos de Entrada/";
+    const string caminhoSaidaBase =
+        caminhoBase + "Arquivos de Saida/";
+    const string caminhoTempoBase =
+        caminhoBase + "Arquivos de Tempo/";
+
+    criarDiretorios(caminhoEntradaBase, caminhoSaidaBase,
+                    caminhoTempoBase, nomeInstancia);
+
+    const string caminhoEntrada =
+        caminhoEntradaBase + nomeInstancia + "/" + nomeArquivo;
+    const string caminhoSaida =
+        caminhoSaidaBase + nomeInstancia + "/" + nomeArquivo;
+    const string caminhoTempo =
+        caminhoTempoBase + nomeInstancia + "/" + nomeArquivo;
+
+    cout << "Salvando instancia de Arquivos de Entrada...\n";
+    salvarVetor(caminhoEntrada, vetor, tamanho);
+
+    cout << "Executando " << nomeAlgoritmo << "...\n";
+    double tempo = calcularTempo(algoritmo, vetor, tamanho);
+
+    cout << "Salvando instancia de Arquivos de Saida...\n";
+    salvarVetor(caminhoSaida, vetor, tamanho);
+
+    cout << "Salvando Arquivos de Tempo...\n";
+    salvarTempo(caminhoTempo, tamanho, tempo);
+    salvarCSV(caminhoCSV, tamanho, nomeInstancia, tempo);
+
+    cout << "\n===== EXECUCAO CONCLUIDA =====\n";
+    cout << "Algoritmo: " << nomeAlgoritmo << "\n";
+    cout << "Tipo: " << nomeInstancia << "\n";
+    cout << "Tamanho: " << tamanho << "\n";
+    cout << "Tempo: " << tempo << " segundos\n";
+
+    cout << "\nArquivos gerados:\n";
+    cout << "Entrada: " << caminhoEntrada << "\n";
+    cout << "Saida:   " << caminhoSaida << "\n";
+    cout << "Tempo:   " << caminhoTempo << "\n";
+    cout << "CSV:     " << caminhoCSV << "\n";
+
+    delete[] vetor;
+}
+\end{lstlisting}
+
+A função apresentada no Código~\ref{lst:executar-algoritmo} é responsável por coordenar a execução dos algoritmos de ordenação. Inicialmente, solicita ao usuário o tipo e o tamanho da instância e gera o vetor correspondente. Em seguida, define os caminhos dos arquivos e salva o vetor original no diretório de entrada.
+
+Após essa etapa, a função executa o algoritmo recebido como parâmetro e mede seu tempo de execução por meio da função \texttt{calcularTempo}. Como o vetor é ordenado durante essa operação, seu conteúdo é salvo no diretório de saída. O tempo obtido também é armazenado em um arquivo individual e em um arquivo CSV, utilizado posteriormente para gerar tabelas e gráficos comparativos.
+
+Por fim, são exibidas informações sobre a execução e os caminhos dos arquivos gerados. A memória alocada dinamicamente para armazenar o vetor é liberada com \texttt{delete[]}, evitando que essa alocação permaneça sem liberação.
+
+\textbf{Observação sobre o uso de funções lambda:} Nas chamadas do Shell Sort, Merge Sort e do Quick Sort são utilizadas funções lambda para adaptar a chamada dos algoritmos à assinatura esperada pela função \texttt{executarAlgoritmo}, que recebe um ponteiro para função com dois parâmetros: o vetor e seu tamanho.
+
+No Shell Sort, a função lambda permite passar o divisor do \textit{gap} como argumento adicional para \texttt{shellSort}. O exemplo a seguir mostra como capturar a variável \texttt{divisor} para utilizar o valor informado pelo usuário:
+
+\begin{lstlisting}[
+    caption={Chamada do Shell Sort utilizando uma função lambda},
+    label={lst:lambda-shell}
+]
+executarAlgoritmo(
+    [divisor](int* vetor, int tamanho) {
+        shellSort(vetor, tamanho, divisor);
+    },
+    "Shell Sort",
+    CAMINHO_SHELL,
+    CSV_SHELL
+);
+\end{lstlisting}
+
+Nesse exemplo, a captura \texttt{[divisor]} permite que a função lambda utilize o valor da variável externa \texttt{divisor}. É importante observar que, na implementação original, a chamada utiliza o valor fixo \texttt{2}. Para que o divisor informado pelo usuário seja utilizado, é necessário substituí-lo pela versão apresentada.
+
+No Merge Sort, a função lambda permite chamar \texttt{mergeSort} passando apenas o vetor e seu tamanho, utilizando os valores padrão dos parâmetros \texttt{esq} e \texttt{dir}, conforme apresentado no exemplo a seguir:
+
+\begin{lstlisting}[
+    caption={Chamada do Merge Sort utilizando uma função lambda},
+    label={lst:lambda-merge}
+]
+executarAlgoritmo(
+    [](int* vetor, int tamanho) {
+        mergeSort(vetor, tamanho);
+    },
+    "Merge Sort",
+    CAMINHO_MERGE,
+    CSV_MERGE
+);
+\end{lstlisting}
+
+Nesse caso, os colchetes vazios \texttt{[]} indicam que a função lambda não precisa capturar variáveis externas. Ela recebe o vetor e seu tamanho e chama \texttt{mergeSort} com esses dois argumentos. Os parâmetros \texttt{esq} e \texttt{dir} assumem seus valores padrão, permitindo que a ordenação seja iniciada sobre o vetor inteiro.
+
+Dessa forma, as funções lambda permitem que os dois algoritmos sejam executados pela mesma função \texttt{executarAlgoritmo}, mantendo a estrutura de geração das instâncias, medição do tempo e salvamento dos arquivos.

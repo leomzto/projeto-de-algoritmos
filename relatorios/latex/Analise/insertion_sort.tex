@@ -1,0 +1,117 @@
+O algoritmo Insertion Sort apresenta diferentes comportamentos de
+desempenho dependendo da organização inicial dos elementos do vetor.
+Sua complexidade de tempo é analisada considerando o melhor caso, o caso
+médio e o pior caso.
+
+\subsubsection{Melhor caso -- \texorpdfstring{$\Theta(n)$}{Theta(n)}}
+
+O melhor caso ocorre quando o vetor já está ordenado de forma crescente.
+Nessa situação, para cada elemento analisado, o algoritmo realiza apenas
+uma comparação com o elemento anterior e verifica que não é necessário
+deslocar nenhum elemento.
+
+Considerando um vetor com $n$ elementos, o laço externo é executado
+$n-1$ vezes. Em cada iteração, é realizada uma quantidade constante de
+operações, como atribuições e comparações.
+
+Assim, o número total de operações é proporcional a:
+
+\begin{equation}
+T(n) = c(n-1) + d
+\end{equation}
+
+em que $c$ e $d$ são constantes. Desconsiderando os termos constantes e
+os de menor crescimento, temos:
+
+\begin{equation}
+T(n) = \Theta(n)
+\end{equation}
+
+Portanto, o melhor caso do Insertion Sort possui complexidade linear.
+
+\subsubsection{Pior caso -- \texorpdfstring{$\Theta(n^2)$}{Theta(n²)}}
+
+O pior caso ocorre quando o vetor está ordenado de forma decrescente e
+deseja-se ordená-lo de forma crescente. Nesse cenário, cada novo elemento
+precisa ser comparado com todos os elementos anteriores e deslocado até o
+início da parte já ordenada.
+
+A quantidade total de deslocamentos pode ser representada pela soma:
+
+\begin{equation}
+T(n) = 1 + 2 + 3 + \cdots + (n-1)
+\end{equation}
+
+Essa soma corresponde à soma dos termos de uma progressão aritmética:
+
+\begin{equation}
+T(n) = \frac{n(n-1)}{2}
+\end{equation}
+
+Desenvolvendo a expressão:
+
+\begin{equation}
+T(n) = \frac{n^2-n}{2}
+\end{equation}
+
+O termo de maior crescimento é $n^2$. Portanto:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Assim, o pior caso do Insertion Sort apresenta complexidade quadrática.
+
+\subsubsection{Caso médio -- \texorpdfstring{$\Theta(n^2)$}{Theta(n²)}}
+
+O caso médio ocorre quando os elementos estão distribuídos aleatoriamente.
+Nessa situação, o algoritmo realiza, em média, aproximadamente metade dos
+deslocamentos possíveis para cada elemento inserido.
+
+Temos:
+
+\begin{equation}
+T(n) \approx \frac{1}{2}
+\left(1+2+3+\cdots+(n-1)\right)
+\end{equation}
+
+Aplicando a fórmula da soma:
+
+\begin{equation}
+T(n) \approx \frac{1}{2}
+\cdot\frac{n(n-1)}{2}
+\end{equation}
+
+\begin{equation}
+T(n) \approx \frac{n^2-n}{4}
+\end{equation}
+
+Como o termo dominante é $n^2$, a complexidade assintótica é:
+
+\begin{equation}
+T(n) = \Theta(n^2)
+\end{equation}
+
+Portanto, no caso médio, o Insertion Sort também apresenta complexidade
+quadrática.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Complexidades do algoritmo Insertion Sort}
+    \label{tab:complexidade-insertion}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Caso} & \textbf{Complexidade de tempo} \\
+        \hline
+        Melhor caso & $\Theta(n)$ \\
+        Caso médio & $\Theta(n^2)$ \\
+        Pior caso & $\Theta(n^2)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Conclui-se que o Insertion Sort é eficiente para vetores pequenos ou
+parcialmente ordenados, mas apresenta desempenho inferior para grandes
+conjuntos de dados desordenados.

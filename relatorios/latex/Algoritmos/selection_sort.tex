@@ -1,0 +1,45 @@
+\quad O Selection Sort é um algoritmo de ordenação baseado na seleção
+sucessiva do menor elemento do vetor. Seu funcionamento consiste em
+dividir mentalmente o vetor em duas partes: uma parte inicialmente
+desordenada e uma parte que já foi ordenada. A cada iteração, o algoritmo
+procura o menor elemento da parte desordenada e o coloca na posição
+correspondente da parte ordenada.
+
+\quad Inicialmente, considera-se que nenhum elemento está ordenado.
+Durante cada iteração, o algoritmo percorre os elementos restantes do
+vetor e identifica aquele que possui o menor valor. Após encontrar esse
+elemento, ele é trocado com o primeiro elemento da parte ainda
+desordenada. Dessa forma, a parte ordenada cresce progressivamente até
+que todos os elementos estejam em suas posições corretas.
+
+\begin{lstlisting}[caption={Implementação do Selection Sort}]
+void selectionSort(int* vetor, int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        int menor = i; 
+
+        for (int j = i + 1; j < tamanho; j++) {
+            if (vetor[j] < vetor[menor]) {
+                menor = j; 
+            }
+        }
+
+        int temp = vetor[i];
+        vetor[i] = vetor[menor];
+        vetor[menor] = temp;
+    }
+}
+\end{lstlisting}
+
+\quad No primeiro laço, a variável $i$ representa o início da parte ainda
+não ordenada do vetor. A variável \texttt{menor} armazena a posição do
+menor elemento encontrado durante a busca.
+
+\quad O segundo laço percorre os elementos que ainda não foram ordenados,
+comparando seus valores com o elemento armazenado na posição
+\texttt{menor}. Quando um elemento menor é encontrado, sua posição passa
+a ser armazenada nessa variável.
+
+\quad Ao final de cada iteração, o menor elemento encontrado é trocado
+com o elemento que ocupa a posição $i$. Assim, esse elemento passa a
+fazer parte da região ordenada do vetor. O processo é repetido até que
+restem apenas dois elementos ou até que todo o vetor esteja ordenado.

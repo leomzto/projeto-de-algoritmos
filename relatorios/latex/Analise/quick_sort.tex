@@ -1,0 +1,119 @@
+\quad O comportamento do \textit{Quick Sort} depende diretamente do
+balanceamento das partições geradas a cada particionamento, que por sua
+vez depende da escolha do pivô. Por esse motivo, diferentemente do
+\textit{Merge Sort}, os casos crescente, decrescente e aleatório podem
+apresentar custos diferentes. Neste trabalho, a análise considera as duas
+versões implementadas: a versão 1, com pivô no primeiro elemento, e a
+versão 2, com pivô dado pela média aritmética da partição.
+
+\quad Em ambas as versões, o particionamento percorre os elementos da
+partição uma única vez com os índices \texttt{i} e \texttt{j}, realizando
+trabalho proporcional ao tamanho da partição. Na versão 2, o cálculo da
+média também percorre a partição uma vez, o que mantém o custo de cada
+particionamento proporcional a $n$.
+
+\subsubsection{Melhor caso -- $\Theta(n\log n)$}
+
+O melhor caso ocorre quando, a cada particionamento, o pivô divide a
+partição em duas partes de tamanhos aproximadamente iguais. Nessa
+situação, cada chamada gera duas subpartições com cerca de $n/2$
+elementos, e o custo total pode ser representado por:
+
+\begin{equation}
+T(n) = 2T\left(\frac{n}{2}\right) + cn
+\end{equation}
+
+em que $cn$ representa o custo do particionamento, proporcional ao
+tamanho da partição.
+
+Como existem aproximadamente $\log_2 n$ níveis de divisão, cada um com
+custo total proporcional a $n$, temos:
+
+\begin{equation}
+T(n) = \Theta(n\log n)
+\end{equation}
+
+Na versão 1, isso ocorre quando o primeiro elemento de cada partição
+é, aproximadamente, a mediana dos seus elementos. Na versão 2, ocorre
+quando a média aritmética está próxima da mediana, como em vetores cujos
+valores são distribuídos de forma uniforme, mesmo que estejam ordenados.
+Nesse caso, o cálculo da média apenas soma outro custo linear ao
+particionamento, sem alterar a ordem de crescimento.
+
+\subsubsection{Pior caso -- $\Theta(n^2)$}
+
+O pior caso ocorre quando o pivô divide a partição de forma
+extremamente desbalanceada, gerando uma partição com $n-1$ elementos e
+outra vazia (ou com um único elemento). Nesse caso, a recorrência é:
+
+\begin{equation}
+T(n) = T(n-1) + cn
+\end{equation}
+
+Expandindo a recorrência, obtém-se:
+
+\begin{equation}
+T(n) = c\sum_{k=1}^{n} k = c\,\frac{n(n+1)}{2} = \Theta(n^2)
+\end{equation}
+
+Na versão 1, esse comportamento ocorre quando o primeiro elemento da
+partição é sempre o menor ou o maior valor dela, o que acontece tanto em
+vetores já ordenados de forma crescente quanto em vetores ordenados de
+forma decrescente. Em vetores crescentes, o pivô é o menor elemento e
+a partição da esquerda fica vazia; em vetores decrescentes, o pivô é o
+maior elemento e a partição da direita fica com um único elemento.
+
+Na versão 2, essas entradas deixam de ser o pior caso, pois a média
+aritmética de valores distribuídos uniformemente tende a ficar próxima
+do centro da partição. Entretanto, o pior caso ainda é possível quando os
+valores são muito discrepantes, como em um vetor cujos elementos crescem
+de forma exponencial. Nesse caso, a média é maior que quase todos os
+elementos, e cada particionamento separa apenas o maior valor, gerando a
+mesma recorrência acima. Assim, o pior caso da versão 2 depende da
+distribuição dos valores, e não apenas da ordem em que eles aparecem.
+
+\subsubsection{Caso médio -- $\Theta(n\log n)$}
+
+No caso médio, considera-se uma distribuição aleatória dos elementos
+do vetor. Nessa situação, a posição final do pivô pode ser qualquer uma
+das $n$ posições com a mesma probabilidade, e a recorrência torna-se:
+
+\begin{equation}
+T(n) = \frac{1}{n}\sum_{k=0}^{n-1}\left[T(k) + T(n-k-1)\right] + cn
+\end{equation}
+
+A solução dessa recorrência é aproximadamente $2n\ln n$, o que resulta
+em:
+
+\begin{equation}
+T(n) = \Theta(n\log n)
+\end{equation}
+
+Mesmo quando as partições não são perfeitamente equilibradas, divisões
+com proporção constante (por exemplo, $1/10$ e $9/10$) ainda produzem
+profundidade logarítmica. Por esse motivo, o caso médio se aproxima do
+melhor caso. Na versão 2, como a média tende a ficar próxima da mediana
+em entradas aleatórias com valores uniformes, o comportamento esperado é
+equivalente, porém com o custo adicional da soma dos elementos em cada
+particionamento.
+
+\subsubsection{Resumo das complexidades}
+
+\begin{table}[H]
+    \centering
+    \caption{Complexidades do algoritmo Quick Sort}
+    \label{tab:complexidade-quick}
+    \begin{tabular}{lcc}
+        \hline
+        \textbf{Caso} & \textbf{Versão 1 (primeiro elemento)} & \textbf{Versão 2 (média)} \\
+        \hline
+        Melhor caso & $\Theta(n\log n)$ & $\Theta(n\log n)$ \\
+        Caso médio & $\Theta(n\log n)$ & $\Theta(n\log n)$ \\
+        Pior caso & $\Theta(n^2)$ & $\Theta(n^2)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\quad Conclui-se que o \textit{Quick Sort} apresenta complexidade
+$\Theta(n\log n)$ nos casos melhor e médio, e $\Theta(n^2)$ no pior caso,
+em ambas as versões.
