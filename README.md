@@ -25,7 +25,7 @@ O programa gera instâncias de entrada, executa os algoritmos, mede o tempo de e
 ## Estrutura do repositório
 
 ```
-Projeto_de_Algoritmos/
+projeto-de-algoritmos/
 ├── CMakeLists.txt           # configuração de build
 ├── README.md
 ├── include/
@@ -42,10 +42,13 @@ Projeto_de_Algoritmos/
 │   ├── shell_sort/
 │   ├── merge_sort/
 │   └── quick_sort/
+│       ├── v1/
+│       └── v2/
 ├── scripts/
 │   └── gerar_grafico_tabela.py   # gera gráficos e tabelas a partir dos tempos
-├── relatorios/              # relatórios das entregas (PDF)
-└── extras/
+├── relatorios/                   # relatórios das entregas (PDF)
+│   └── latex/                    # source code LaTex do relatório
+└── extras/                       # gráficos e tabelas + CSV de tempos
     ├── graficos/
     ├── tabelas/
     └── tempos/
