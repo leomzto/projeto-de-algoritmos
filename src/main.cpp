@@ -1,4 +1,4 @@
-#include "include/utils/menu.hpp"
+#include "../include/utils/menu.hpp"
 
 #include <cstdlib>
 #include <ctime>

@@ -53,11 +53,11 @@ int* gerarInstancia(int tipo, int tamanho) {
 string obterNomeInstancia(int tipo) {
     switch (tipo) {
         case 1:
-            return "Crescente";
+            return "crescente";
         case 2:
-            return "Decrescente";
+            return "decrescente";
         case 3:
-            return "Randomico";
+            return "randomico";
         default:
             return "null";
     }

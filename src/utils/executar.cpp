@@ -28,9 +28,9 @@ void executarAlgoritmo(function<void(int*, int)> algoritmo,
     const string nomeInstancia = obterNomeInstancia(tipo);
     const string nomeArquivo = nomeInstancia + "_" + to_string(tamanho) + ".txt";
 
-    const string caminhoEntradaBase = caminhoBase + "Arquivos de Entrada/";
-    const string caminhoSaidaBase = caminhoBase + "Arquivos de Saida/";
-    const string caminhoTempoBase = caminhoBase + "Arquivos de Tempo/";
+    const string caminhoEntradaBase = caminhoBase + "arquivos_de_entrada/";
+    const string caminhoSaidaBase = caminhoBase + "arquivos_de_saida/";
+    const string caminhoTempoBase = caminhoBase + "arquivos_de_tempo/";
 
     criarDiretorios(caminhoEntradaBase, caminhoSaidaBase,
                     caminhoTempoBase, nomeInstancia);
