@@ -65,8 +65,8 @@ Projeto_de_Algoritmos/
 
 ## Requisitos
 
-- Compilador C++ com suporte a C++17 ou superior (MinGW/GCC, Clang ou MSVC)
-- [CMake](https://cmake.org/) 3.10 ou superior *(AJUSTAR conforme o seu `CMakeLists.txt`)*
+- Compilador C++17 da família GCC (por exemplo, MinGW no Windows), pois o `CMakeLists.txt` usa flags específicas do GCC
+- [CMake](https://cmake.org/) 3.20 ou superior
 - Python 3 (testado com 3.14) com `matplotlib` e `pandas`, para gerar gráficos e tabelas (dependências em `requirements.txt`)
 
 ## Como compilar
@@ -86,10 +86,14 @@ Para a versão de depuração, use `-DCMAKE_BUILD_TYPE=Debug` e a pasta `cmake-b
 Depois de compilar, execute o programa gerado em `cmake-build-release/`:
 
 ```bash
-./cmake-build-release/NOME_DO_EXECUTAVEL
+# Linux/macOS
+./cmake-build-release/Projeto_de_Algoritmo
+
+# Windows (PowerShell)
+.\cmake-build-release\Projeto_de_Algoritmo.exe
 ```
 
-*(AJUSTAR: substitua pelo nome do executável definido no `CMakeLists.txt`. No Windows, use o `.exe`.)*
+> **Importante:** execute sempre a partir da **raiz do projeto**. Os caminhos de `dados/` são relativos à pasta em que o programa é iniciado.
 
 O programa abre um **menu interativo** para gerar as instâncias e executar os algoritmos. *(AJUSTAR: descreva as opções do menu.)*
 
