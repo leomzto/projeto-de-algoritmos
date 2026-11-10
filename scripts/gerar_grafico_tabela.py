@@ -8,9 +8,9 @@ from matplotlib.ticker import FuncFormatter
 # CAMINHOS
 # ==================================================
 
-PASTA_TEMPOS = Path("../Extras/Tempos")
-PASTA_GRAFICOS = Path("../Extras/Graficos")
-PASTA_TABELAS = Path("../Extras/Tabelas")
+PASTA_TEMPOS = Path("../extras/tempos")
+PASTA_GRAFICOS = Path("../extras/graficos")
+PASTA_TABELAS = Path("../extras/tabelas")
 
 # Cria as pastas caso não existam
 PASTA_GRAFICOS.mkdir(parents=True, exist_ok=True)
