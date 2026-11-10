@@ -66,18 +66,32 @@ Projeto_de_Algoritmos/
 ## Requisitos
 
 - Compilador C++17 da família GCC (por exemplo, MinGW no Windows), pois o `CMakeLists.txt` usa flags específicas do GCC
+    - No Windows, uma opção é instalar o [MSYS2](https://www.msys2.org/) e, no terminal **MSYS2 UCRT64**, rodar `pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make`. Depois, adicione `C:\msys64\ucrt64\bin` ao PATH.
 - [CMake](https://cmake.org/) 3.20 ou superior
 - Python 3 (testado com 3.14) com `matplotlib` e `pandas`, para gerar gráficos e tabelas (dependências em `requirements.txt`)
 
 ## Como compilar
 
 ```bash
-git clone https://github.com/leomzto/projeto-de-algoritmos.git
-cd projeto-de-algoritmos
+git clone https://github.com/leomzto/Projeto_de_Algoritmos.git
+cd Projeto_de_Algoritmos
+```
 
+**Linux / macOS**
+
+```bash
 cmake -B cmake-build-release -DCMAKE_BUILD_TYPE=Release
 cmake --build cmake-build-release
 ```
+
+**Windows (MinGW)**
+
+```powershell
+cmake -B cmake-build-release -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build cmake-build-release
+```
+
+> No Windows, o `-G "MinGW Makefiles"` é necessário. Sem ele, o CMake tenta usar o NMake (Visual Studio) e a configuração falha.
 
 Para a versão de depuração, use `-DCMAKE_BUILD_TYPE=Debug` e a pasta `cmake-build-debug`.
 
@@ -130,4 +144,4 @@ Os relatórios com a análise dos resultados estão em [`relatorios/`](relatorio
 
 ## Autor
 
-**Leonardo Manzato** — [@leomzto](https://github.com/leomzto)
+**Leonardo** — [@leomzto](https://github.com/leomzto)
